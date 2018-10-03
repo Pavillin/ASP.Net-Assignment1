@@ -1,0 +1,51 @@
+﻿@model RocketLeagueStats.Models.team
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.losses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.losses)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.teamid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
