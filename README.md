@@ -10,3 +10,4 @@ A web application designed to show the stats of Professional Rocket League teams
 * [SQL Server](https://www.microsoft.com/en-ca/sql-server/sql-server-2017) - Relational database management system
 * [Entity Framework](https://www.asp.net/) - Open source object-relational mapping framework
 * [Azure](https://azure.microsoft.com/en-ca/) - Cloud computing service
+* [Superhero CSS](https://bootswatch.com/3/superhero/) - A custom bootstrap theme (Modified by me)
