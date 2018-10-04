@@ -1,6 +1,12 @@
-﻿body {
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,9 +33,35 @@ textarea {
 table.sortable thead {
     background-color: #00bc8c;
     font-weight: bold;
-    cursor: default;
+    cursor: pointer;
 }
 
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
     content: " \25B4\25BE"
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('Images/bg.png');
+    background-position: center;
+    text-align: center;
+    height: 50em;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 60%;
+    text-align: center;
+}
+
+.main-space {
+    padding-top: 30px;
+}
+
+.fancy-text {
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.5), 0px 8px 13px rgba(0,0,0,0.3), 0px 18px 23px rgba(0,0,0,0.3);
 }
