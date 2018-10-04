@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Add New Team", "Create")
 </p>
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped sortable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.name)
@@ -24,7 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.losses)
         </th>
-        <th></th>
+        <th class="sorttable_nosort"></th>
     </tr>
 
 @foreach (var item in Model) {
