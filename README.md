@@ -4,6 +4,8 @@
 
 A web application designed to show the stats of Professional Rocket League teams and players.
 
+[Rocket League Stats](https://aspnetassignment1.azurewebsites.net/) - Link to live site.
+
 ## Built With
 
 * [ASP.NET MVC](https://www.asp.net/mvc) - Open source web application framework
