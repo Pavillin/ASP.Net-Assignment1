@@ -18,14 +18,18 @@ namespace RocketLeagueStats.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Team")]
         public string name { get; set; }
 
         [Required]
         [StringLength(3)]
+        [Display(Name = "Region")]
         public string region { get; set; }
 
+        [Display(Name = "Wins")]
         public int wins { get; set; }
 
+        [Display(Name = "Losses")]
         public int losses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
