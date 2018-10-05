@@ -52,10 +52,9 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 }
 
 .footer {
-    position: absolute;
     bottom: 0;
-    width: 60%;
     text-align: center;
+    padding: 60px 0px;
 }
 
 .main-space {
