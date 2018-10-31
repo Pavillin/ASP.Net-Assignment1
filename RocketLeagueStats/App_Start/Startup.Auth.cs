@@ -50,9 +50,9 @@ namespace RocketLeagueStats
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: System.Configuration.ConfigurationManager.AppSettings["TwitterAPIKey"],
+               consumerSecret: System.Configuration.ConfigurationManager.AppSettings["TwitterAPISecret"]);
 
             //app.UseFacebookAuthentication(
             //   appId: "",
