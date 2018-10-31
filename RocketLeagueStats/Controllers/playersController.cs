@@ -37,6 +37,7 @@ namespace RocketLeagueStats.Controllers
         }
 
         // GET: players/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.teamid = new SelectList(db.teams, "teamid", "name");
@@ -62,6 +63,7 @@ namespace RocketLeagueStats.Controllers
         }
 
         // GET: players/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +97,7 @@ namespace RocketLeagueStats.Controllers
         }
 
         // GET: players/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
