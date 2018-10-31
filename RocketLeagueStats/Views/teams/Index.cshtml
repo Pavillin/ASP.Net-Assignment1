@@ -8,7 +8,10 @@
 <h2>Team Stats</h2>
 
 <p>
-    @Html.ActionLink("Add New Team", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Add New Team", "Create")
+    }
 </p>
 <table class="table table-hover table-striped sortable">
     <tr>
@@ -42,9 +45,18 @@
             @Html.DisplayFor(modelItem => item.losses)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.teamid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.teamid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.teamid })
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.teamid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.teamid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.teamid })
+                </p>
+            }
+            else
+            {
+                @Html.ActionLink("Details", "Details", new {  id = item.teamid})
+            }
         </td>
     </tr>
 }
