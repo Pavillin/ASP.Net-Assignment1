@@ -49,29 +49,28 @@ namespace RocketLeagueStats.Controllers
             return View("Details", team);
         }
 
-        //// GET: teams/Create
-        //[Authorize]
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: teams/Create
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View("Create");
+        }
 
-        //// POST: teams/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "teamid,name,region,wins,losses")] team team)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.teams.Add(team);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: teams/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "teamid,name,region,wins,losses")] team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Save(team);
+                return RedirectToAction("Index");
+            }
 
-        //    return View(team);
-        //}
+            return View("Create", team);
+        }
 
         //// GET: teams/Edit/5
         //[Authorize]

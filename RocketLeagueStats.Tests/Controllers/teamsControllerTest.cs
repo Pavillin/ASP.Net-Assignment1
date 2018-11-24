@@ -32,7 +32,8 @@ namespace RocketLeagueStats.Tests.Controllers
             mock.Setup(mock => mock.teams).Returns(teams.AsQueryable());
             controller = new teamsController(mock.Object);
         }
-
+        // GET: teams
+        #region
         [TestMethod]
         public void IndexReturnsView()
         {
@@ -51,7 +52,11 @@ namespace RocketLeagueStats.Tests.Controllers
             //assert
             CollectionAssert.AreEqual(teams.ToList(), actual);
         }
+        #endregion
 
+
+        // GET: teams/Details/5
+        #region
         [TestMethod]
         public void DetailsNoId()
         {
@@ -90,5 +95,58 @@ namespace RocketLeagueStats.Tests.Controllers
             //assert
             Assert.AreEqual("Details", result.ViewName);
         }
+        #endregion
+
+
+        // GET: teams/Create
+        #region
+        [TestMethod]
+        public void CreateViewLoads()
+        {
+            // act
+            var result = (ViewResult)controller.Create();
+
+            // assert
+            Assert.AreEqual("Create", result.ViewName);
+        }
+        #endregion
+
+
+        // POST: teams/Create
+        #region
+        [TestMethod]
+        public void CreateValidTeam()
+        {
+            // arrange
+            team newTeam = new team
+            {
+                teamid = 400,
+                name = "Team Four",
+                region = "NA",
+                wins = 10,
+                losses = 3
+            };
+
+            // act
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.Create(newTeam);
+
+            // assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+        [TestMethod]
+        public void CreateInvalidTeam()
+        {
+            // arrange
+            team invalid = new team();
+
+            // act
+            controller.ModelState.AddModelError("Cannot create", "create exception");
+            ViewResult result = (ViewResult)controller.Create(invalid);
+
+            // assert
+            Assert.AreEqual("Create", result.ViewName);
+        }
+        #endregion
     }
 }
