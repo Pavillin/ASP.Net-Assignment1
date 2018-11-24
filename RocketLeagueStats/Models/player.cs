@@ -32,4 +32,3 @@ namespace RocketLeagueStats.Models
         public virtual team team { get; set; }
     }
 }
-
