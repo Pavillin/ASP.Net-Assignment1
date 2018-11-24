@@ -34,20 +34,20 @@ namespace RocketLeagueStats.Controllers
             return View("Index", teams);
         }
 
-        //// GET: teams/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    team team = db.teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: teams/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return View("Error");
+            }
+            team team = db.teams.SingleOrDefault(t => t.teamid == id);
+            if (team == null)
+            {
+                return View("Error");
+            }
+            return View("Details", team);
+        }
 
         //// GET: teams/Create
         //[Authorize]

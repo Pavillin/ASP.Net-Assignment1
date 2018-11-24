@@ -42,5 +42,53 @@ namespace RocketLeagueStats.Tests.Controllers
             //assert
             Assert.AreEqual("Index", result.ViewName);
         }
+
+        [TestMethod]
+        public void IndexReturnsTeams()
+        {
+            //act
+            var actual = (List<team>)((ViewResult)controller.Index()).Model;
+            //assert
+            CollectionAssert.AreEqual(teams.ToList(), actual);
+        }
+
+        [TestMethod]
+        public void DetailsNoId()
+        {
+            //act
+            var result = (ViewResult)controller.Details(null);
+
+            //assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsInvalidId()
+        {
+            //act
+            var result = (ViewResult)controller.Details(67830);
+
+            //assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsValidId()
+        {
+            //act - cast the model as an team object
+            team actual = (team)((ViewResult)controller.Details(100)).Model;
+
+            //assert - is this the first album in our mock array
+            Assert.AreEqual(teams[0], actual);
+        }
+
+        [TestMethod]
+        public void DetailsViewLoads()
+        {
+            //act
+            ViewResult result = (ViewResult)controller.Details(100);
+            //assert
+            Assert.AreEqual("Details", result.ViewName);
+        }
     }
 }
