@@ -72,37 +72,36 @@ namespace RocketLeagueStats.Controllers
             return View("Create", team);
         }
 
-        //// GET: teams/Edit/5
-        //[Authorize]
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    team team = db.teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: teams/Edit/5
+        [Authorize]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View("Error");
+            }
+            team team = db.teams.SingleOrDefault(t => t.teamid == id);
+            if (team == null)
+            {
+                return View("Error");
+            }
+            return View("Edit", team);
+        }
 
-        //// POST: teams/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "teamid,name,region,wins,losses")] team team)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(team).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(team);
-        //}
+        // POST: teams/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "teamid,name,region,wins,losses")] team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Save(team);
+                return RedirectToAction("Index");
+            }
+            return View("Edit", team);
+        }
 
         //// GET: teams/Delete/5
         //[Authorize]

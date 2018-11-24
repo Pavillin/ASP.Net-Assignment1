@@ -148,5 +148,94 @@ namespace RocketLeagueStats.Tests.Controllers
             Assert.AreEqual("Create", result.ViewName);
         }
         #endregion
+
+
+        // GET: teams/Edit/5
+        #region
+        [TestMethod]
+        public void EditNoId()
+        {
+            // arrange
+            int? id = null;
+
+            // act 
+            var result = (ViewResult)controller.Edit(id);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void EditInvalidId()
+        {
+            // act
+            var result = (ViewResult)controller.Edit(8983);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void EditViewLoads()
+        {
+            // act
+            ViewResult actual = (ViewResult)controller.Edit(100);
+
+            // assert
+            Assert.AreEqual("Edit", actual.ViewName);
+        }
+
+        [TestMethod]
+        public void EditLoadsAlbum()
+        {
+            // act
+            team actual = (team)((ViewResult)controller.Edit(100)).Model;
+
+            // assert
+            Assert.AreEqual(teams[0], actual);
+        }
+        #endregion
+
+
+        // POST: teams/Edit
+        #region
+        [TestMethod]
+        public void EditPostLoadsIndex()
+        {
+            // act
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.Edit(teams[0]);
+
+            // assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+        [TestMethod]
+        public void EditPostInvalidLoadsView()
+        {
+            // arrange
+            team invalid = new team { teamid = 27 };
+            controller.ModelState.AddModelError("Error", "Won't Save");
+
+            // act
+            ViewResult result = (ViewResult)controller.Edit(invalid);
+
+            // assert
+            Assert.AreEqual("Edit", result.ViewName);
+        }
+
+        [TestMethod]
+        public void EditPostInvalidLoadsAlbum()
+        {
+            // arrange
+            team invalid = new team { teamid = 100 };
+            controller.ModelState.AddModelError("Error", "Won't Save");
+
+            // act
+            team result = (team)((ViewResult)controller.Edit(invalid)).Model;
+
+            // assert
+            Assert.AreEqual(invalid, result);
+        }
+        #endregion
     }
 }
