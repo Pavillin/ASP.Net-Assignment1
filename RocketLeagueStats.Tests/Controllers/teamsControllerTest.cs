@@ -237,5 +237,83 @@ namespace RocketLeagueStats.Tests.Controllers
             Assert.AreEqual(invalid, result);
         }
         #endregion
+
+
+        // GET: teams/Delete
+        #region
+        [TestMethod]
+        public void DeleteNoId()
+        {
+            // act
+            var result = (ViewResult)controller.Delete(null);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteInvalidId()
+        {
+            // act
+            var result = (ViewResult)controller.Delete(3739);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteValidIdLoadsView()
+        {
+            // act
+            var result = (ViewResult)controller.Delete(100);
+
+            // assert
+            Assert.AreEqual("Delete", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteValidIdLoadsAlbum()
+        {
+            // act
+            team result = (team)((ViewResult)controller.Delete(100)).Model;
+
+            // assert
+            Assert.AreEqual(teams[0], result);
+        }
+        #endregion
+
+
+        // POST: teams/DeleteConfirmed/100
+        #region
+        [TestMethod]
+        public void DeleteConfirmedNoId()
+        {
+            // act
+            ViewResult result = (ViewResult)controller.DeleteConfirmed(null);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteConfirmedInvalidId()
+        {
+            // act
+            ViewResult result = (ViewResult)controller.DeleteConfirmed(3972);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteConfirmedValidId()
+        {
+            // act
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.DeleteConfirmed(100);
+
+            // assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+        #endregion
     }
 }

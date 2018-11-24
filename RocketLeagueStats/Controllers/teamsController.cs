@@ -103,32 +103,43 @@ namespace RocketLeagueStats.Controllers
             return View("Edit", team);
         }
 
-        //// GET: teams/Delete/5
-        //[Authorize]
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    team team = db.teams.Find(id);
-        //    if (team == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(team);
-        //}
+        // GET: teams/Delete/5
+        [Authorize]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return View("Error");
+            }
+            team team = db.teams.SingleOrDefault(t => t.teamid == id);
+            if (team == null)
+            {
+                return View("Error");
+            }
+            return View("Delete", team);
+        }
 
-        //// POST: teams/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    team team = db.teams.Find(id);
-        //    db.teams.Remove(team);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: teams/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            if (id == null)
+            {
+                return View("Error");
+            }
+
+            team team = db.teams.SingleOrDefault(a => a.teamid == id);
+
+            if (team == null)
+            {
+                return View("Error");
+            }
+
+            db.Delete(team);
+
+            return RedirectToAction("Index");
+        }
 
         //protected override void Dispose(bool disposing)
         //{
