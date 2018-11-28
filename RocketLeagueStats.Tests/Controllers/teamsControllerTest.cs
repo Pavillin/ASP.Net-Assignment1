@@ -83,7 +83,7 @@ namespace RocketLeagueStats.Tests.Controllers
             //act - cast the model as an team object
             team actual = (team)((ViewResult)controller.Details(100)).Model;
 
-            //assert - is this the first album in our mock array
+            //assert - is this the first team in our mock array
             Assert.AreEqual(teams[0], actual);
         }
 
@@ -186,7 +186,7 @@ namespace RocketLeagueStats.Tests.Controllers
         }
 
         [TestMethod]
-        public void EditLoadsAlbum()
+        public void EditLoadsTeam()
         {
             // act
             team actual = (team)((ViewResult)controller.Edit(100)).Model;
@@ -224,7 +224,7 @@ namespace RocketLeagueStats.Tests.Controllers
         }
 
         [TestMethod]
-        public void EditPostInvalidLoadsAlbum()
+        public void EditPostInvalidLoadsTeam()
         {
             // arrange
             team invalid = new team { teamid = 100 };
@@ -272,7 +272,7 @@ namespace RocketLeagueStats.Tests.Controllers
         }
 
         [TestMethod]
-        public void DeleteValidIdLoadsAlbum()
+        public void DeleteValidIdLoadsTeam()
         {
             // act
             team result = (team)((ViewResult)controller.Delete(100)).Model;
